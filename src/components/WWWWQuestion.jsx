@@ -42,6 +42,14 @@ class WWWWQuestion extends React.Component {
         this.setState({value: ''})
     }
 
+    handleKeyDown = e => {
+        const { error, value } = this.state;
+        const isDisabled = !_.isEmpty(error) || value === '';
+        if(e.key === 'Enter' && !isDisabled) {
+            this.nextStep();
+        }
+    }
+
     printErrors = () => {
         const {error} = this.state;
         const { validate } = this.props.structure;
@@ -57,6 +65,7 @@ class WWWWQuestion extends React.Component {
     render() {
         const {value,error} = this.state;
         const { structure } = this.props;
+        const isDisabled = value  === '' || !_.isEmpty(error)
 
         return (
             <div className="wwww-question">
@@ -68,6 +77,7 @@ class WWWWQuestion extends React.Component {
                     className="control input" 
                     type="text" 
                     onChange={e => this.handleChange(e.target.value)} 
+                    onKeyDown={this.handleKeyDown}
                     placeholder={structure && structure.description} 
                     value={value}
                 />
@@ -77,7 +87,7 @@ class WWWWQuestion extends React.Component {
                 </div>
                 <div className="question-button">
                     <button 
-                        disabled={value  === '' || !_.isEmpty(error)}
+                        disabled={isDisabled}
                         className="control" 
                         onClick={() => this.nextStep()}
                     >
