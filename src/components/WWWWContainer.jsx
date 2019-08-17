@@ -25,7 +25,9 @@ class WWWWContainer extends React.Component {
         this.setState(pState => ({
             step: (step)
                 ? 1 
-                : (pState.step === 4) ? 0 : pState.step + 1,
+                : (pState.step === Object.keys(structure).length) 
+                    ? 0 
+                    : pState.step + 1,
         }));
     }
 
