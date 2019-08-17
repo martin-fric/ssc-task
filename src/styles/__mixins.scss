@@ -1,0 +1,30 @@
+@mixin transition($property) {
+    -webkit-transition: $property .35s ease;
+    -moz-transition: $property .35s ease;
+    -ms-transition: $property .35s ease;
+    -o-transition: $property .35s ease;
+    transition: $property .35s ease;
+}
+
+@mixin button($bg) {
+    background: $bg;
+    border-color: darken($bg,8%);
+    @include transition(background);
+    &:hover {
+        background: darken($bg,8%);
+        @include transition(background);
+    }
+    &:active, &:active { 
+        border-color: darken($bg,25%);
+        background: darken($bg,15%);
+    } 
+    &:active, &:focus, &:active:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    &:disabled {
+        background: $btn-disabled;
+        outline: none;
+        border: none;
+    }
+}

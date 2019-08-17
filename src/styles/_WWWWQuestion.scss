@@ -1,0 +1,30 @@
+.wwww-question {
+    margin: 0 auto;
+    padding: 10px;
+    .question-button {
+        .control {
+            @include button(rgb(79, 255, 56));
+            border-radius: 10px;
+            height: 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            vertical-align: middle;
+            &:disabled {
+                background-color: $btn-disabled;
+            }
+        }
+    }
+    .question-content {
+        height: 100px;
+        margin-top: 20px;
+        p {
+            vertical-align: middle
+        }
+        .error-text {
+            color:#f44;
+            font-weight: 600;
+            font-size: 12px;
+            text-align: left;
+        }
+    }
+}
