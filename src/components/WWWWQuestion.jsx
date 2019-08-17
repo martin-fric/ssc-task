@@ -24,6 +24,14 @@ class WWWWQuestion extends React.Component {
         this.setState({value, error: errorCopy})
     }
 
+    handleKeyDown = e => {
+        const { error, value } = this.state;
+        const isDisabled = !_.isEmpty(error) || value === '';
+        if(e.key === 'Enter' && !isDisabled) {
+            this.nextStep();
+        }
+    }
+
     addToErrors = (arr,key) => {
         if(arr.indexOf(key) === -1) arr.push(key);
         return arr;
@@ -34,22 +42,6 @@ class WWWWQuestion extends React.Component {
         return arr;
     }
 
-    nextStep = () => {
-        const { value } = this.state;
-        this.props.storeValue(value,()=>{
-            this.props.nextStep();}
-        );
-        this.setState({value: ''})
-    }
-
-    handleKeyDown = e => {
-        const { error, value } = this.state;
-        const isDisabled = !_.isEmpty(error) || value === '';
-        if(e.key === 'Enter' && !isDisabled) {
-            this.nextStep();
-        }
-    }
-
     printErrors = () => {
         const {error} = this.state;
         const { validate } = this.props.structure;
@@ -57,11 +49,21 @@ class WWWWQuestion extends React.Component {
 
         return result.join(', ');
     }
+
+    nextStep = () => {
+        const { value } = this.state;
+        this.props.storeValue(value,()=>{
+            this.props.nextStep();}
+        );
+        this.setState({value: ''})
+    }
+    
     componentDidUpdate(props,state) {
         if(props.structure !== this.props.structure) {
             this.questionInput.focus();
         }
     }
+
     render() {
         const {value,error} = this.state;
         const { structure } = this.props;
