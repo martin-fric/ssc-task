@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 const WWWWStart = props => {
     let { data } = props;
-    data = data.reverse();
     return(
         <div className="wwww-start">
             <div className="start-content">

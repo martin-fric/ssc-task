@@ -6,9 +6,11 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
     const { results } = state;    
+    const resultsCopy = [...results];
+    resultsCopy.unshift(action.payload)
     if (action.type === ADD_RESULT) {
       return Object.assign({}, state, {
-        results: results.concat(action.payload)
+        results: resultsCopy
       });
     }
     return state;
