@@ -16,9 +16,11 @@ class WWWWQuestion extends React.Component {
         const { error } = this.state;
         let errorCopy = [...error];
         Object.keys(validate).forEach(key => {
-            !validations[key](value,validate[key])
-                ? errorCopy = this.addToErrors(errorCopy,key)
-                : errorCopy = this.removeFromErrors(errorCopy, key);
+            if(validations[key]){
+                errorCopy = !validations[key](value,validate[key])
+                    ? this.addToErrors(errorCopy,key)
+                    : this.removeFromErrors(errorCopy, key);
+            }
         })
 
         this.setState({value, error: errorCopy})

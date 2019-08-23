@@ -1,12 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 
-const WWWWStart = props => {
-    let { data } = props;
+const WWWWStart = ({data, start}) => {
     return(
         <div className="wwww-start">
             <div className="start-content">
-                {!_.isEmpty(props.data) 
+                {!_.isEmpty(data) 
                     ? 
                         data.map((res,i) => {
                             return (
@@ -24,7 +23,7 @@ const WWWWStart = props => {
                 }
             </div>
             <div className="start-button">
-                <button className="control" onClick={() => props.start(1)}>{_.isEmpty(props.data) ? 'START GAME' : 'PLAY AGAIN'}</button>
+                <button className="control" onClick={() => start(1)}>{_.isEmpty(data) ? 'START GAME' : 'PLAY AGAIN'}</button>
             </div>
         </div>
     )

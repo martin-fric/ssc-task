@@ -38,7 +38,7 @@ class WWWWContainer extends React.Component {
 
         resultCopy[structure[step].id] = val;
 
-        if(step === 4) {
+        if(step === Object.keys(structure).length) {
             addResult(resultCopy)
             resultCopy = {};
             this.setState({
@@ -78,12 +78,11 @@ class WWWWContainer extends React.Component {
                 }
                 </div>
                 <div className="footer">
-                    <p>Martin Frič - +421 917 877 090 / fric@ccsolutions.sk</p>   
+                    <p>ssc-task</p>   
                 </div>     
             </div>
         )
     }
 }
-connect(mapStateToProps)(WWWWContainer);
 
 export default connect(mapStateToProps,mapDispatchToProps)(WWWWContainer);

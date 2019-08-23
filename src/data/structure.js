@@ -5,7 +5,8 @@ const structure = {
         validate: {
             minLength: 1,
             maxLength: 50,
-            isText: 'only'
+            isText: 'only',
+            isIs: 'asd'
         }
     },
     2: {
